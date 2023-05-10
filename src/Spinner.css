@@ -1,0 +1,41 @@
+@media only screen {
+  :root {
+    --wheel-font: "Lato", "Quicksand", sans-serif;
+    --wheel-size: 630px;
+    --wheel-slice-spacing: 50px;
+    --wheel-border-size: 5px;
+    --wheel-color: #d38c12;
+    --neutral-color: white;
+    --PI: 3.14159265358979;
+    --nb-item: 0;
+    --item-nb: 0;
+    --selected-item: 0;
+    --nb-turn: 5;
+    --spinning-duration: 10s;
+    --reset-duration: 0.25s;
+  }
+}
+
+.start-rotate {
+  animation: start-rotate 1s linear infinite;
+}
+
+@keyframes start-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.stop-rotate {
+  animation-play-state: paused;
+}
+
+.wheel.spinning {
+  transition: transform var(--spinning-duration);
+  transform: rotate(
+    calc(
+      var(--nb-turn) * 360deg +
+        (-360deg * var(--selected-item) / var(--nb-item, 1))
+    )
+  );
+}
